@@ -23,7 +23,11 @@ class NetworkManager {
     private let appId: String = "b25887c3"
     private let appKey: String = "98845d5aff595ccd3339711c0fa5ab8e"
     
-    
+    /**
+     Get data from server
+     - Parameter searchText: Text to search recipes by
+     - Returns: Recipes list
+     */
     func fetchData(searchText: String, completionHandler: @escaping (Result<[Hit], NetworkError>) -> Void) {
         guard var components = URLComponents(string: baseURL) else {
             completionHandler(.failure(.invalidUrl))

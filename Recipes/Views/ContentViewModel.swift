@@ -15,6 +15,10 @@ class ContentViewModel: ObservableObject {
     
     private let networkManager =  NetworkManager.shared
     
+    /**
+     Get data from server
+     - Parameter searchText: Text to search recipes by
+     */
     func getRecipes(searchText: String) {
         isLoading = true
         networkManager.fetchData(searchText: searchText) { result in
