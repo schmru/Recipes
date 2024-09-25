@@ -11,6 +11,6 @@ struct Response: Codable {
     let hits: [Hit]
 }
 
-struct Hit: Codable {
+struct Hit: Codable, Hashable {
     let recipe: Recipe
 }

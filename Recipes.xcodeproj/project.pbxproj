@@ -17,6 +17,8 @@
 		7149E8732CA34AA600C8F187 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7149E8722CA34AA600C8F187 /* Recipe.swift */; };
 		7149E87A2CA34C2D00C8F187 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7149E8792CA34C2D00C8F187 /* NetworkManager.swift */; };
 		7149E87C2CA353F900C8F187 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7149E87B2CA353F900C8F187 /* ApiResponse.swift */; };
+		71EE69582CA48DA200B5CDD4 /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EE69572CA48DA200B5CDD4 /* RecipeCell.swift */; };
+		71EE695A2CA48F2A00B5CDD4 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EE69592CA48F2A00B5CDD4 /* ContentViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		7149E8722CA34AA600C8F187 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		7149E8792CA34C2D00C8F187 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		7149E87B2CA353F900C8F187 /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
+		71EE69572CA48DA200B5CDD4 /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
+		71EE69592CA48F2A00B5CDD4 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,10 +104,11 @@
 		7149E8462CA34A4900C8F187 /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
+				71EE695C2CA48F4200B5CDD4 /* Cells */,
+				71EE695B2CA48F3100B5CDD4 /* Views */,
 				7149E8782CA34C1300C8F187 /* Network */,
 				7149E8712CA34A9800C8F187 /* Models */,
 				7149E8472CA34A4900C8F187 /* RecipesApp.swift */,
-				7149E8492CA34A4900C8F187 /* ContentView.swift */,
 				7149E84B2CA34A4C00C8F187 /* Assets.xcassets */,
 				7149E84D2CA34A4C00C8F187 /* Preview Content */,
 			);
@@ -150,6 +155,23 @@
 				7149E8792CA34C2D00C8F187 /* NetworkManager.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		71EE695B2CA48F3100B5CDD4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7149E8492CA34A4900C8F187 /* ContentView.swift */,
+				71EE69592CA48F2A00B5CDD4 /* ContentViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		71EE695C2CA48F4200B5CDD4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				71EE69572CA48DA200B5CDD4 /* RecipeCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,6 +307,8 @@
 				7149E87A2CA34C2D00C8F187 /* NetworkManager.swift in Sources */,
 				7149E84A2CA34A4900C8F187 /* ContentView.swift in Sources */,
 				7149E8732CA34AA600C8F187 /* Recipe.swift in Sources */,
+				71EE695A2CA48F2A00B5CDD4 /* ContentViewModel.swift in Sources */,
+				71EE69582CA48DA200B5CDD4 /* RecipeCell.swift in Sources */,
 				7149E87C2CA353F900C8F187 /* ApiResponse.swift in Sources */,
 				7149E8482CA34A4900C8F187 /* RecipesApp.swift in Sources */,
 			);

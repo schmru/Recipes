@@ -20,12 +20,11 @@ class NetworkManager {
     
     private let baseURL: String = "https://api.edamam.com/api/recipes/v2"
         
-    // TODO: move to secure location
     private let appId: String = "b25887c3"
     private let appKey: String = "98845d5aff595ccd3339711c0fa5ab8e"
     
+    
     func fetchData(searchText: String, completionHandler: @escaping (Result<[Hit], NetworkError>) -> Void) {
-        
         guard var components = URLComponents(string: baseURL) else {
             completionHandler(.failure(.invalidUrl))
             return
@@ -44,7 +43,6 @@ class NetworkManager {
             return
         }
        
-        
         let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             if let error = error {
                 print("Error with fetching data: \(error.localizedDescription)")
