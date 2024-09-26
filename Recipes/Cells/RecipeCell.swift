@@ -12,7 +12,7 @@ struct RecipeCell: View {
     
     var body: some View {
         HStack(alignment: .center) {
-            AsyncImage(url: URL(string: recipe.image)) { image in
+            AsyncImage(url: URL(string: recipe.images.thumbnail.url)) { image in
                 image.resizable()
                     .aspectRatio(contentMode: .fit)
             } placeholder: {
@@ -27,7 +27,6 @@ struct RecipeCell: View {
 
 struct RecipeCell_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeCell(recipe: .init(label: "Name",
-                                 image: "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&webp=true&resize=600,545"))
+        RecipeCell(recipe: Recipe.getMockRecepie())
     }
 }

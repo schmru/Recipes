@@ -36,6 +36,7 @@ struct ContentView: View {
                     .accessibilityIdentifier("SearchButton")
             }
             .padding(.horizontal, 16.0)
+            
             if viewModel.isLoading {
                 Spacer()
                 ProgressView()
@@ -46,8 +47,7 @@ struct ContentView: View {
                 } else {
                     List {
                         ForEach(viewModel.hitsList, id: \.self) { hit in
-                            RecipeCell(recipe: .init(label: hit.recipe.label,
-                                                     image: hit.recipe.image))
+                            RecipeCell(recipe: hit.recipe)
                         }
                     }
                     .onAppear(perform: {
