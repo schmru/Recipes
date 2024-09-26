@@ -22,6 +22,7 @@ struct ContentView: View {
                     .padding(12)
                     .background(.yellow,
                                 in: RoundedRectangle(cornerRadius: 12))
+                    .accessibilityIdentifier("SearchInput")
                 
                 Button(role: .destructive,
                        action: {viewModel.getRecipes(searchText: searchText)},
@@ -32,6 +33,7 @@ struct ContentView: View {
                     .foregroundColor(.black)
                     .background(.yellow,
                                 in: RoundedRectangle(cornerRadius: 12))
+                    .accessibilityIdentifier("SearchButton")
             }
             .padding(.horizontal, 16.0)
             if viewModel.isLoading {
@@ -52,6 +54,7 @@ struct ContentView: View {
                         UITableView.appearance().contentInset.top = -35
                         UITableView.appearance().contentInset.bottom = -35
                     })
+                    .accessibilityIdentifier("RecipesList")
                 }
             }
             Spacer()

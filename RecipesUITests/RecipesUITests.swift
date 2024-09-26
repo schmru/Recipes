@@ -8,35 +8,43 @@
 import XCTest
 
 class RecipesUITests: XCTestCase {
+    
+    private var app: XCUIApplication!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        app = XCUIApplication()
+        app.launch()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        app = nil
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testIfSearchButtonExists() throws {
+        let searchButton = app.buttons["SearchButton"]
+        XCTAssertTrue(searchButton.exists)
     }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+    
+    func testIfSearchInputExists() throws {
+        let searchIput = app.textFields["SearchInput"]
+        XCTAssertTrue(searchIput.exists)
+    }
+    
+    func testIfListHiddenAtStart() throws {
+        let list = app.tables["RecipesList"]
+        XCTAssertFalse(list.exists)
+    }
+    
+    func testIfListShows() throws {
+        let searchIput = app.textFields["SearchInput"]
+        searchIput.tap()
+        searchIput.typeText("Chicken")
+        let searchButton = app.buttons["SearchButton"]
+        searchButton.tap()
+        sleep(10)
+        let list = app.tables
+        let count = list.cells.count
+        XCTAssert(count > 0)
     }
 }
