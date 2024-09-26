@@ -28,45 +28,34 @@ class NetworkManager {
      - Parameter searchText: Text to search recipes by
      - Returns: Recipes list
      */
-    func fetchData(searchText: String, completionHandler: @escaping (Result<[Hit], NetworkError>) -> Void) {
+    func fetchData(searchText: String) async throws -> [Hit] {
         guard var components = URLComponents(string: baseURL) else {
-            completionHandler(.failure(.invalidUrl))
-            return
+            throw NetworkError.invalidUrl
         }
-
+        
         components.queryItems = [
             URLQueryItem(name: "type", value: "public"),
             URLQueryItem(name: "app_id", value: appId),
             URLQueryItem(name: "app_key", value: appKey),
             URLQueryItem(name: "q", value: searchText)
         ]
-
+        
         guard let url = components.url else {
             print("Error with url fetching data")
-            completionHandler(.failure(.invalidUrl))
-            return
+            throw NetworkError.invalidUrl
         }
-       
-        let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-            if let error = error {
-                print("Error with fetching data: \(error.localizedDescription)")
-                completionHandler(.failure(.sessionError(error: error)))
+        
+        let (data, response) = try await URLSession.shared.data(from: url)
+        if let httpResponse = response as? HTTPURLResponse,
+           (200...299).contains(httpResponse.statusCode) {
+            guard let response = try? JSONDecoder().decode(Response.self, from: data) else
+            {
+                throw NetworkError.missingResponse
             }
-            
-            if let httpResponse = response as? HTTPURLResponse,
-               (200...299).contains(httpResponse.statusCode) {
-                guard let data = data,
-                      let response = try? JSONDecoder().decode(Response.self, from: data) else
-                      {
-                          completionHandler(.failure(.missingResponse))
-                          return
-                      }
-                completionHandler(.success(response.hits))
-            } else {
-                print("Error, unexpected status code: \(response!)")
-                completionHandler(.failure(.badResponse(response: response)))
-            }
-        })
-        task.resume()
+            return response.hits
+        } else {
+            print("Error, unexpected status code: \(response)")
+            throw NetworkError.badResponse(response: response)
+        }
     }
 }

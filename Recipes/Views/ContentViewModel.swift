@@ -21,17 +21,17 @@ class ContentViewModel: ObservableObject {
      */
     func getRecipes(searchText: String) {
         isLoading = true
-        networkManager.fetchData(searchText: searchText) { result in
-            DispatchQueue.main.async {
-            self.isLoading = false
-                switch result {
-                case .success(let hits):
+        Task {
+            do {
+                let hits = try await networkManager.fetchData(searchText: searchText)
+                DispatchQueue.main.async {
                     self.hitsList = hits
-                    
-                case .failure(let error):
-                    self.alertText = "Something went wrong\n\n" + error.localizedDescription + "\n\nPlease try again later"
-                    self.showAlert = true
+                    self.isLoading = false
                 }
+            } catch {
+                self.isLoading = false
+                self.alertText = "Something went wrong\n\n" + error.localizedDescription + "\n\nPlease try again later"
+                self.showAlert = true
             }
         }
     }
