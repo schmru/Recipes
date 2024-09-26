@@ -20,7 +20,12 @@ struct RecipeCell: View {
             }
             .frame(width: 100, height: 100)
             
-            Text(recipe.label)
+            VStack(alignment: .leading, spacing: 8) {
+                Text(recipe.label)
+                    .font(.body)
+                Text("Calories: \(recipe.calories)")
+                    .font(.caption)
+            }
         }
     }
 }

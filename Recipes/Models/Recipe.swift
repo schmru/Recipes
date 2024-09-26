@@ -10,11 +10,14 @@ import Foundation
 struct Recipe: Codable, Hashable {
     let label: String
     let images: ThumbnailImage
+    let calories: Float
     
     static func getMockRecepie() -> Recipe {
         let thumbnail = Thumbnail(url: "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&webp=true&resize=600,545")
         let image = ThumbnailImage(thumbnail: thumbnail)
-        return .init(label: "Recipe name", images: image)
+        return .init(label: "Recipe name",
+                     images: image,
+                     calories: 10000.00)
     }
 }
 
