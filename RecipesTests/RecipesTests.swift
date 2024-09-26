@@ -19,12 +19,12 @@ class RecipesTests: XCTestCase {
     }
 
     func testDataFetching() throws {
-        NetworkManager.shared.fetchData(searchText: "chicken") { result in
-            switch result {
-            case .success(let hits):
+        Task {
+            do {
+                let hits = try await NetworkManager.shared.fetchData(searchText: "chicken")
                 XCTAssertTrue(hits.count > 0)
-            case .failure(_):
-                XCTFail("Data fetching unsuccessful with errror")
+            } catch {
+                XCTFail("Data fetching unsuccessful")
             }
         }
     }
